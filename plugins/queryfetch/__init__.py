@@ -2,6 +2,8 @@ from nonebot import get_plugin_config
 from nonebot.plugin import PluginMetadata
 
 from . import __main__ as __main__
+from . import getsleepy as getsleepy
+
 from nonebot_plugin_apscheduler import scheduler
 from .config import Config
 
