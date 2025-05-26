@@ -1,11 +1,7 @@
-# Test1
+# Are U Sleepy???
 
-## How to start
+# **定时任务写炸了，别用定时功能**
 
-1. generate project using `nb create` .
-2. install plugins using `nb plugin install` .
-3. run your bot using `nb run` .
+[来视剑我](status.0d000721.xin)
 
-## Documentation
-
-See [Docs](https://nonebot.dev/)
+[灵感仓库](https://github.com/wyf9/sleepy)
