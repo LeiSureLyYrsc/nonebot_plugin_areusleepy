@@ -1,7 +1,7 @@
 [project]
 name = "AreUSleepy"
 version = "0.1.0"
-description = "Test1"
+description = "基于 Sleepy 状态查询的插件"
 readme = "README.md"
 requires-python = ">=3.9, <4.0"
 dependencies = [

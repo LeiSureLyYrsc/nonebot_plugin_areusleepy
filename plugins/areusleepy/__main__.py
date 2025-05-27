@@ -82,25 +82,3 @@ async def _(arg_msg: Message = CommandArg()):
     # 生成并发送消息
     msg = await create_status_message(data)
     await fetch_status.send(str(msg))
-
-# 定时任务(未测试)
-@scheduler.scheduled_job('cron', hour=plugin_config.schedule_hour, id='sleepy_status_scheduler')
-async def scheduled_job():
-    """按配置的时间执行定时任务"""
-    if not plugin_config.schedule_enable:
-        return
-        
-    try:
-        bot = get_bot()
-        data = await get_status_data()
-        if data is None:
-            return
-
-        # 生成状态消息
-        msg = await create_status_message(data)
-
-        # 向配置的群组发送消息
-        for group_id in plugin_config.sleepygroup:
-            await bot.send_group_msg(group_id=group_id, message=str(msg))
-    except Exception as e:
-        pass  # 定时任务出错时静默处理
