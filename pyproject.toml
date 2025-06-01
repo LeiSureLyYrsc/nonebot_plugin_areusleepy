@@ -25,5 +25,3 @@ adapters = [
 plugin_dirs = ["./plugins"]
 builtin_plugins = []
 
-[tool.pdm]
-[tool.pdm.dev-dependencies]

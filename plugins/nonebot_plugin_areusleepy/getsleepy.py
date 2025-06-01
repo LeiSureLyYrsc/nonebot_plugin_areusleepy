@@ -12,10 +12,10 @@ from typing import Optional
 from .config import Config
 
 # 获取插件配置
-plugin_config = get_plugin_config(Config)
+plugin_config: Config = get_plugin_config(Config)
 
 get_other_status = on_command(
-    "getsleepy",
+    plugin_config.command,
     aliases={"获取其他Sleepy状态"}
 )
 

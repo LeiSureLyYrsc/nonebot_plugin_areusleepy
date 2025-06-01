@@ -8,6 +8,12 @@
 
 # **OK了，已经爆了**
 
-[来视剑我](status.0d000721.xin)
+[来视剑我](https://status.0d000721.xin)
 
 [灵感仓库](https://github.com/wyf9/sleepy)
+
+---
+
+## 配置 & 使用说明
+
+- `command`: 触发功能的命令
