@@ -1,5 +1,13 @@
 # Are U Sleepy???
 
+> *原 README 见源代码*
+
+*未完成, 请勿使用*
+
+<!--
+
+> ↑ 被你发现了
+
 # ~~**定时任务写炸了，别用定时功能**~~
 
 # ~~**我已经把定时任务爆了**~~
@@ -12,8 +20,27 @@
 
 [灵感仓库](https://github.com/wyf9/sleepy)
 
----
+-->
 
-## 配置 & 使用说明
+## 安装
 
-- `command`: 触发功能的命令
+Windows: `.\install_libs.bat`
+
+Linux / MacOS: `./install_libs.sh`
+
+也可以手动安装依赖:
+
+```sh
+pip install pdm
+pdm install
+```
+
+## 配置
+
+TODO
+
+## 启动
+
+```sh
+nb run
+```
