@@ -19,16 +19,26 @@ get_other_status = on_command(
     aliases={"获取其他Sleepy状态"}
 )
 
-async def get_status_data(custom_url: Optional[str] = None) -> Optional[dict]:
+
+async def get_status_data(custom_url: Optional[str] = None) -> Optional[tuple[bool, dict | str]]:
     url = f"{custom_url or plugin_config.sleepyurl}/query"
-    try:
-        async with httpx.AsyncClient(timeout=10.0) as client:
-            response = await client.get(url)
-            if response.status_code == 200:
-                return response.json()
-            return None
-    except Exception as e:
-        return None
+    retries: int = plugin_config.retries
+    success = False  # 是否成功
+    data = '未知错误'  # 成功: json / 错误: 错误信息
+    while retries > 0:
+        try:
+            async with httpx.AsyncClient(timeout=plugin_config.timeout) as client:
+                response = await client.get(url)
+                if response.status_code == 200:
+                    success = True
+                    data = response.json()
+                    break
+                else:
+                    data = f'状态码不为 200: {response.status_code}'
+        except Exception as e:
+            data = f'错误信息: {e}'
+        retries -= 1
+    return success, data
 
 
 def format_device_info(device_data: dict) -> str:
@@ -40,6 +50,7 @@ def format_device_info(device_data: dict) -> str:
             f"    应用: {info.get('app_name')}"
         )
     return "\n".join(device_lines)
+
 
 async def create_status_message(data: dict, url: Optional[str] = None) -> UniMessage:
     msg = UniMessage()
@@ -63,8 +74,9 @@ async def create_status_message(data: dict, url: Optional[str] = None) -> UniMes
     # 最后更新时间
     if 'last_updated' in data:
         msg += f"\n\n⏱ 最后更新: {data['last_updated']}"
-    
+
     return msg
+
 
 @get_other_status.handle()
 async def handle_get_other_status(arg_msg: Message = CommandArg()):
@@ -78,13 +90,13 @@ async def handle_get_other_status(arg_msg: Message = CommandArg()):
     await get_other_status.send("正在获取状态信息，请稍候...")
 
     # 获取状态数据
-    data = await get_status_data(url)
-    
-    # 如果获取数据失败，返回错误信息
-    if data is None:
-        await get_other_status.send("获取状态信息失败，请检查URL是否正确")
-        return
+    success, data = await get_status_data(url)
 
-    # 生成并发送消息
-    msg = await create_status_message(data, url)
-    await get_other_status.send(str(msg))
+    if success:
+        # 生成并发送消息
+        msg = await create_status_message(data, url)
+        await get_other_status.send(str(msg))
+    else:
+        # 如果获取数据失败，返回错误信息
+        await get_other_status.send(f"获取状态信息失败: {data}")
+        return
