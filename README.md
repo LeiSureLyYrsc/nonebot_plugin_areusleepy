@@ -1,13 +1,34 @@
 # Are U Sleepy???
 
-# ~~**定时任务写炸了，别用定时功能**~~
+用来~~视剑~~查看在线状态的 NoneBot 插件
 
-# ~~**我已经把定时任务爆了**~~
+## 安装
 
-# ~~**等等，好像忘记爆了，等会去爆**~~
+```sh
+pip install pdm
+pdm install
+```
 
-# **OK了，已经爆了**
+## 配置
 
-[来视剑我](status.0d000721.xin)
+将 `.env.example` 重命名 / 复制为 `.env.prod`, 按照说明修改配置即可
 
-[灵感仓库](https://github.com/wyf9/sleepy)
+## 启动
+
+```sh
+nb run
+```
+
+使用: `/sleepy` (`sleepy 为你配置的触发命令`)
+
+或 `/sleepy [服务地址]`
+
+> [!IMPORTANT]
+> 服务地址必须以 `http://` 或 `https:// 开头` <br/>
+> 如未指定服务地址则使用配置中的 `sleepy_url`
+
+## 关于
+
+[作者的视剑网站](https://status.0d000721.xin)
+
+[Sleepy 服务](https://github.com/sleepy-project/sleepy)

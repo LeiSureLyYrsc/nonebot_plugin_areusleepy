@@ -1,0 +1,6 @@
+.pdm-*
+.python-version
+pdm.lock
+.venv/
+__pycache__/
+.env.prod
