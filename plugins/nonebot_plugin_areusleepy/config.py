@@ -2,10 +2,12 @@ from pydantic import BaseModel
 
 
 class Config(BaseModel):
-    command_areusleepy: str = 'areusleepy' # areusleepy 功能触发命令
-    sleepyurl: str # areusleepy 功能的
-    sleepygroup: list[str] = ['']
-    schedule_enable: bool = False  # 定时任务开关，默认关闭
-    schedule_hour: str = '0'  # 定时任务执行的小时，默认每小时执行一次
-    timeout: float = 5.0  # 请求超时 (秒)
-    retries: int = 3  # 请求失败时的重试次数
+    # 基本配置
+    sleepy_command: str = 'sleepy'  # 触发命令
+    sleepy_prompt_loading: bool = True  # 是否提示获取中
+    sleepy_show_details: bool = False  # 是否显示详细信息
+
+    # Sleepy 服务配置
+    sleepy_url: str = 'https://sleepy-preview.wyf9.top'  # Sleepy 服务地址
+    sleepy_timeout: float = 5.0  # 请求超时 (秒)
+    sleepy_retries: int = 3  # 请求失败时的重试次数

@@ -3,3 +3,4 @@
 pdm.lock
 .venv/
 __pycache__/
+.env.prod

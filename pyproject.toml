@@ -4,8 +4,8 @@ authors = [
     { name = "LeiSureLyYrsc", email = "congyu@sbhfy.cn" },
     { name = "wyf9", email = "wyf9@wyf9.top" },
 ]
-version = "0.1.0"
-description = "基于 Sleepy 状态查询的插件"
+version = "0.2.0"
+description = "基于 Sleepy 的在线状态查询插件"
 readme = "README.md"
 requires-python = ">=3.9, <4.0"
 dependencies = [
@@ -16,6 +16,7 @@ dependencies = [
     "nonebot2[fastapi]>=2.4.2",
     "nonebot2[websockets]>=2.4.2",
     "nonebot_adapter_onebot>=2.4.6",
+    "requests>=2.32.3",
 ]
 
 [build-system]
